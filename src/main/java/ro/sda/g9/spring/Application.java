@@ -1,17 +1,25 @@
 package ro.sda.g9.spring;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ro.sda.g9.spring.config.ApplicationConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-public class Application {
+@SpringBootApplication
+public class Application implements CommandLineRunner {
+
+    @Autowired
+    private SchoolsManager schoolsManager;
+
 
     public static void main(String[] args) {
 
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(); //clasa in Spring
-        applicationContext.register(ApplicationConfiguration.class);
-        applicationContext.refresh();
+        SpringApplication.run(Application.class, args);
 
-        SchoolsManager schoolsManager = (SchoolsManager) applicationContext.getBean("schoolsManager");
+   }
+
+    @Override
+    public void run(String... args) throws Exception {
         schoolsManager.saveData();
     }
 }

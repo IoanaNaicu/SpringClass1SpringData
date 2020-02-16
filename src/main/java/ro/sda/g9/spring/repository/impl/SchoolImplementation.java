@@ -19,5 +19,10 @@ public class SchoolImplementation extends BaseMethodsImpl<School> implements Sch
                 .collect(Collectors.toList());
     }
 
-
+    @Override
+    public String toString() {
+        return "SchoolImplementation{" +
+                "entityList=" + entityList +
+                '}';
+    }
 }

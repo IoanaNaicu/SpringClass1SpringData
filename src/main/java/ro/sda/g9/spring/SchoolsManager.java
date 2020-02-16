@@ -46,8 +46,11 @@ public class SchoolsManager {
         studentRepository.createEntity(student1);
         studentRepository.createEntity(student2);
 
+
         schoolRepository.createEntity(school1);
         schoolRepository.createEntity(school2);
+
+        System.out.println("hello");
 
     }
 
