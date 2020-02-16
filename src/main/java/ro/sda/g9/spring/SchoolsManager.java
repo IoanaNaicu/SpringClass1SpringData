@@ -10,49 +10,23 @@ import ro.sda.g9.spring.repository.StudentRepository;
 @Component
 public class SchoolsManager {
 
-    @Autowired
     private SchoolRepository schoolRepository;
+    private StudentRepository studentRepository;
+    private DataReader dataReader;
 
     @Autowired
-    private StudentRepository studentRepository;
+    public SchoolsManager(SchoolRepository schoolRepository, StudentRepository studentRepository, DataReader dataReader) {
+        this.schoolRepository = schoolRepository;
+        this.studentRepository = studentRepository;
+        this.dataReader = dataReader;
+    }
 
-    //recomandat sa fie Autowired pe constructor (sa fii sigur ca construirea unui schoolManager se face corect)
-
-//    @Autowired
-//    public SchoolsManager(SchoolRepository schoolRepository, StudentRepository studentRepository) {
-//        this.schoolRepository = schoolRepository;
-//        this.studentRepository = studentRepository;
-//    }
-
-    public void saveData() {
-        Student student1 = new Student();
-        student1.setId(1);
-        student1.setCnp("2900413989542");
-        student1.setName("Alex");
-
-        Student student2 = new Student();
-        student2.setId(2);
-        student2.setCnp("19412913989542");
-        student2.setName("Popa Ion");
-
-        School school1 = new School();
-        school1.setId(1);
-        school1.setName("Colegiul Emil Racovita");
-
-        School school2 = new School();
-        school2.setId(2);
-        school2.setName("Colegiul Mihai Viteazu");
-
-        studentRepository.createEntity(student1);
-        studentRepository.createEntity(student2);
-
-
-        schoolRepository.createEntity(school1);
-        schoolRepository.createEntity(school2);
-
-        System.out.println("hello");
+    public void saveStudents() {
+        studentRepository.saveAll(dataReader.readStudents());
 
     }
 
-
+    public void saveSchools() {
+        schoolRepository.saveAll(dataReader.readSchools());
+    }
 }

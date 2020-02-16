@@ -12,6 +12,8 @@ public class Application implements CommandLineRunner {
     private SchoolsManager schoolsManager;
 
 
+
+
     public static void main(String[] args) {
 
         SpringApplication.run(Application.class, args);
@@ -20,6 +22,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        schoolsManager.saveData();
+        schoolsManager.saveSchools();
+        schoolsManager.saveStudents();
     }
 }
